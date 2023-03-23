@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" href="logo_light.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="icon" href="images/logo_light.png">
 </head>
 
 <body>
@@ -17,52 +18,33 @@
             <h2 class="sr-only">Site header</h2>
             <!--NAV BAR-->
             <ul class="header">
-                <li><a href="/index.html"><img src="images" alt="Lux Tenebris Logo" width="300"></a></li>
+                <li><a href="/index.html"><img src="images/logoWWordLight.jpg" alt="Site Logo" width="300"></a></li>
                 <li><a href="/customize">Customize View</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <div class="ToDo-Ongoing">
-            <h2>ADD ITEM: ONGOING</h2>
+        <div class="Container">
+            <header>
+                <div class="new-todo">
+                    <form id="todoform">
+                        <input type="text" name="newtodo" id="newtodo" placeholder="Mention to DM...">
+                        <button type="submit">
+                            <div class="button">
+                                <img src="images/plus_light.png" alt="Site Logo">
+                            </div>
+                        </button>
 
-            <form class="add-item">
-                <label for="item-name">ADD ITEM: Ongoing</label>
-                <input type="text" name="item" id="item-name" placeholder="Mention it to DM..." required />
-                <input type="submit" value="Add Item" />
-            </form>
-
-            <ul class="Ongoing-items">
-                <li>Loading Items...</li>
-            </ul>
-        </div>
-
-        <div class="ToDo-Session">
-            <h2>ADD ITEM: SESSION</h2>
-
-            <form class="add-item">
-                <label for="item-name">ADD ITEM: Session</label>
-                <input type="text" name="item" id="item-name" placeholder="Mention it to DM..." required />
-                <input type="submit" value="Add Item" />
-            </form>
-
-            <ul class="Session-items">
-                <li>Loading Items...</li>
-            </ul>
-        </div>
-
-        <div class="ToDo-Future">
-            <h2>ADD ITEM: FUTURE</h2>
-
-            <form class="add-item">
-                <label for="item-name">ADD ITEM: Future</label>
-                <input type="text" name="item" id="item-name" placeholder="Mention it to DM..." required />
-                <input type="submit" value="Add Item" />
-            </form>
-
-            <ul class="Future-items">
-                <li>Loading Items...</li>
-            </ul>
+                    </form>
+                </div>
+            </header>
+            <div class="todolist">
+                <div class="todo" id="0">
+                    <!-- <i class="bi bi-circle"></i> -->
+                    <i class="bi bi-check-circle-fill"></i>
+                    <p>Hey</p>
+                </div>
+            </div>
         </div>
     </main>
 
