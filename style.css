@@ -88,11 +88,10 @@ main {
   color: #fff;
 }
 .new-todo form button {
-  width: 60px;
-  height: 40px;
+  width: 40px;
+  height: 25px;
   font-size: 1rem;
   background-color: transparent;
-  color: rgb(255, 247, 0);
   border: none;
   border-left: 0px;
   cursor: pointer;
@@ -102,12 +101,13 @@ main {
 }
 
 #todos-list {
+  color: #212121;
   height: calc(var(--container-height) - var(--header-height));
-  background-color: #fff;
+  background-color: #ff7474;
   padding: 0.5rem;
-  border: 1px solid rgb(219, 219, 219);
-  overflow: scroll;
-  border-radius: 0 0 5px 5px;
+  border: none;
+  overflow:auto;
+  border-radius: 0 0 15px 15px;
 }
 
 #todos-list .todo {
@@ -135,10 +135,10 @@ main {
   color: grey;
 }
 #todos-list .todo .bi-pencil-square {
-  color: rgb(31, 177, 48);
+  color: rgb(255, 255, 255);
 }
 #todos-list .todo .bi-trash {
-  color: rgb(236, 82, 82);
+  color: rgb(255, 255, 255);
   margin: 0;
 }
 
