@@ -1,45 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Set the page title -->
-    <title>Assignment 03</title>
+<html lang="en-ca">
 
-    <!-- Set the charset we're using to UTF-8 -->
+<head>
+    <title>To-Do&D</title>
     <meta charset="UTF-8" />
-
-    <!-- Set the screens default zoom / scale to 1 -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- We are using a CSS Reset file to standardize browser default css -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="reset.css" />
-
-    <!-- This is where all of our awesome CSS code goes -->
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="logo_light.png">
+</head>
 
-    <!-- Set the Favicon  -->
-    <link rel="icon" href="./images/favicon/rocket.svg" type="image/svg+xml" />
-  </head>
-  <body>
-    <!--
-
-      ADD YOUR ASSIGNMENT 03 CODE
-
-      YOU MAY REMOVE THE BOILERPLATE CODE BELOW
-
-      IMPORTANT CHECKLIST:
-
-      - Are users able to create and delete to do list items?
-      - Have you set a favicon? (included - but it's a rocket)
-      - Do you have a css reset file? (included)
-      - Has a team member conducted a code review and left a GitHub Issue in your repo?
-      - Have you conducted a code review and left a GitHub Issue on your team member's repo?
-
-    -->
+<body>
+    <header>
+        <nav>
+            <h2 class="sr-only">Site header</h2>
+            <!--NAV BAR-->
+            <ul class="header">
+                <li><a href="/index.html"><img src="logoWWordLight.jpg" alt="Lux Tenebris Logo" width="300"></a></li>
+                <li><a href="/customize">Customize View</a></li>
+            </ul>
+        </nav>
+    </header>
     <main>
-      <div id="app"></div>
+        <div class="ToDo-Ongoing">
+            <h2>ADD ITEM: ONGOING</h2>
+
+            <form class="add-item">
+                <label for="item-name">ADD ITEM: Ongoing</label>
+                <input type="text" name="item" id="item-name" placeholder="Mention it to DM..." required />
+                <input type="submit" value="Add Item" />
+            </form>
+
+            <ul class="Ongoing-items">
+                <li>Loading Items...</li>
+            </ul>
+        </div>
+
+        <div class="ToDo-Session">
+            <h2>ADD ITEM: SESSION</h2>
+
+            <form class="add-item">
+                <label for="item-name">ADD ITEM: Session</label>
+                <input type="text" name="item" id="item-name" placeholder="Mention it to DM..." required />
+                <input type="submit" value="Add Item" />
+            </form>
+
+            <ul class="Session-items">
+                <li>Loading Items...</li>
+            </ul>
+        </div>
+
+        <div class="ToDo-Future">
+            <h2>ADD ITEM: FUTURE</h2>
+
+            <form class="add-item">
+                <label for="item-name">ADD ITEM: Future</label>
+                <input type="text" name="item" id="item-name" placeholder="Mention it to DM..." required />
+                <input type="submit" value="Add Item" />
+            </form>
+
+            <ul class="Future-items">
+                <li>Loading Items...</li>
+            </ul>
+        </div>
     </main>
 
-    <!-- This is where we add our awesome JavaScript code -->
-    <script src="./main.js"></script>
-  </body>
+    <script src="./javascript.js"></script>
+</body>
+
 </html>
