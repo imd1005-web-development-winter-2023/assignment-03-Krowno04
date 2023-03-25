@@ -40,7 +40,6 @@ body {
 
   background-image: url(images/bgFullRed.png);
   background-attachment: fixed; 
-  background: cover;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
@@ -55,12 +54,11 @@ main {
 }
 
 .container {
-  max-width: auto;
+  max-width: 100%;
   min-width: 100%;
   padding: 50px;
   border-radius: 35px;
   background-color: #362929;
-  opacity: 75;
   box-shadow: 0 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -107,7 +105,6 @@ main {
 
 #todos-list {
   color: #212121;
-  height: calc(var(--container-height) - var(--header-height));
   background-color: #ff7474;
   padding: 0.5rem;
   border: none;
