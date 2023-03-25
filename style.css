@@ -39,8 +39,10 @@ body {
   background-color: #fdf0d5;
 
   background-image: url(images/bgFullRed.png);
-  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background: cover;
   background-size: cover;
+  background-repeat: no-repeat;
   min-height: 100vh;
   
   justify-content: center;

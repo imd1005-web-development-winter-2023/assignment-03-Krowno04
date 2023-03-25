@@ -26,7 +26,7 @@ function saveTodo() {
   const isEmpty = todoValue === '';
 
   if (isEmpty) {
-      showNotification("Input is empty! Add a Todo!");
+      alert("Input is empty! Add a Todo!");
   } else {
       if (EditTodoId >= 0) {
           todos = todos.map((todo, index) => ({
