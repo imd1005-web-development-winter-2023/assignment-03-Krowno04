@@ -1,6 +1,6 @@
 ul.header {
   background-color: #212121;
-  margin: -10px;
+  margin:0px;
   padding: 30px;
   list-style: none;
   display: flex;
@@ -11,7 +11,7 @@ ul.header {
   width: 100%;
 }
 
-header a {
+/* header a {
   color: #FF7474;
   font-family: Georgia, 'Times New Roman', Times, serif;
   text-decoration: none;
@@ -27,7 +27,7 @@ header a:active {
 
 header a:focus {
   color: #ff1d1d;
-}
+} */
 
 header img {
   margin: -10px;
@@ -49,11 +49,12 @@ body {
 
 main {
   padding: 25px;
+  display:flex;
 }
 
 .container {
   max-width: auto;
-  min-width: auto;
+  min-width: 100%;
   padding: 50px;
   border-radius: 35px;
   background-color: #362929;
@@ -88,8 +89,10 @@ main {
   color: #fff;
 }
 .new-todo form button {
-  width: 40px;
-  height: 25px;
+  min-width: 40px;
+  min-height: 25px;
+  max-width: 40px;
+  max-height: 25px;
   font-size: 1rem;
   background-color: transparent;
   border: none;
@@ -141,6 +144,8 @@ main {
   color: rgb(255, 255, 255);
   margin: 0;
 }
+
+
 
 .todo form button {
   width: 40px;
