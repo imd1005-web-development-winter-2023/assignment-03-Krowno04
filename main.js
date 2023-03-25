@@ -38,6 +38,7 @@ function saveTodo() {
       todos.push({
         value: todoValue,
         checked: false,
+        category: "untagged",
       });
     }
 
@@ -55,20 +56,68 @@ function renderTodos() {
   todosListEl.innerHTML = '';
 
   todos.forEach((todo, index) => {
-    todosListEl.innerHTML += `
-  <div class="todo" class="untagged" id=${index}>
-    <i 
-    class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
-    data-action="check"
-    ></i>
-    <p class="" data-action="check">${todo.value}</p>
-    <i class="bi bi-pencil-square" data-action="edit"></i>
-    <i class="bi bi-trash" data-action="delete"></i>
-    <i class="bi bi-bookmark-fill" data-action="tag">    
-      <div id="tdTag" class="untagged">
-    </div>
-    </i>
-    </div>`;
+
+    if (todo.category==="untagged") {
+      todosListEl.innerHTML += `
+      <div class="todo" id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i class="bi bi-bookmark-fill" data-action="tag">    
+          <div id="tdTag" class="untagged">
+        </div>
+        </i>
+        </div>`;
+    } else if (todo.category==="session") {
+      todosListEl.innerHTML += `
+      <div class="todo" id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i class="bi bi-bookmark-fill" data-action="tag">    
+          <div id="tdTag" class="session">
+        </div>
+        </i>
+        </div>`;
+    } else if (todo.category==="ongoing") {
+      todosListEl.innerHTML += `
+      <div class="todo" id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i class="bi bi-bookmark-fill" data-action="tag">    
+          <div id="tdTag" class="ongoing">
+        </div>
+        </i>
+        </div>`;
+    } else {
+      todosListEl.innerHTML += `
+      <div class="todo" id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i class="bi bi-bookmark-fill" data-action="tag">    
+          <div id="tdTag" class="future">
+        </div>
+        </i>
+        </div>`;
+    }
   });
 }
 
@@ -128,18 +177,22 @@ function changeTag(todoId, todoTag) {
   switch (todoTag) {
     case "untagged":
       tdTag.classList.replace("untagged", "session");
+      todoId.category.replace("untagged", "session")
       console.log(todoTag);
       break;
     case "session":
       tdTag.classList.replace("session", "ongoing");
+      todoId.category.replace("session", "ongoing")
       console.log(todoTag);
       break;
     case "ongoing":
       tdTag.classList.replace("ongoing", "future");
+      todoId.category.replace("ongoing", "future")
       console.log(todoTag);
       break;
     case "future":
       tdTag.classList.replace("future", "untagged");
+      todoId.category.replace("future", "untagged")
       console.log(todoTag);
       break;
     default:       
