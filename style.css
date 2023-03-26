@@ -113,11 +113,13 @@ main {
   border-radius: 0 0 15px 15px;
 }
 
+/* UNTAGGED STYLE */
 #todos-list .todo {
   display: flex;
   align-items: center;
   padding: 0.75rem 0.5rem;
   border-radius: 5px;
+  background-color: #ff7474;
 }
 #todos-list .todo:hover {
   background-color: rgba(0, 0, 0, 0.1);
@@ -133,10 +135,58 @@ main {
   flex: 1;
   word-break: break-all;
 }
-.checked {
-  text-decoration: line-through;
-  color: grey;
+
+/* CHECKED STYLE */
+
+#todos-list .todo-checked {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 5px;
+  background-color: #863c3c;
+  color:white;
 }
+
+#todos-list .todo-checked:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+#todos-list .todo-checked * {
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+#todos-list .todo-checked i {
+  font-size: 0.9rem;
+}
+#todos-list .todo-checked p {
+  flex: 1;
+  word-break: break-all;
+}
+
+/* TAGGED STYLE */
+
+#todos-list .todo-tagged {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 0.5rem;
+  border-radius: 5px;
+  background-color: #ffa9a9;
+}
+
+#todos-list .todo-tagged:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+#todos-list .todo-tagged * {
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+#todos-list .todo-tagged i {
+  font-size: 0.9rem;
+}
+#todos-list .todo-tagged p {
+  flex: 1;
+  word-break: break-all;
+}
+
 #todos-list .todo .bi-pencil-square {
   color: rgb(255, 255, 255);
 }
@@ -155,7 +205,7 @@ main {
   margin-left: 8px;
 }
 
-.ongoing {
+/* .ongoing {
   color: rgb(255, 230, 0);
 }
 
@@ -169,7 +219,7 @@ main {
 
 .broke {
   color: rgb(255, 0, 0);
-}
+} */
 
 
 .todo form button {
@@ -181,23 +231,6 @@ main {
   margin: 10px;
   padding: 0px;
   cursor: pointer;
-}
-
-@keyframes add-new-item-annimation {
-  from {
-    transform: translateY(+20%);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0%);
-    opacity: 1;
-  }
-}
-
-.new-item-annimate {
-  transform-origin: 10% 0;
-  animation: add-new-item-annimation 0.3s linear;
 }
 
 /*

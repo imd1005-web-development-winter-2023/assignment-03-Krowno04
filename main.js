@@ -38,7 +38,8 @@ function saveTodo() {
       todos.push({
         value: todoValue,
         checked: false,
-        category: "untagged",
+        done:false,
+        tagged: false,
       });
     }
 
@@ -57,7 +58,39 @@ function renderTodos() {
 
   todos.forEach((todo, index) => {
 
-    if (todo.category==="untagged") {
+    if (todo.tagged===true) {
+      todosListEl.innerHTML += `
+      <div class="todo-tagged" id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i 
+        class="bi ${todo.tagged ? 'bi-bookmark-fill' : 'bi-bookmark'}"
+        data-action="tag"
+        ></i>
+        </div>`;
+    }
+    else if (todo.checked===true) {
+      todosListEl.innerHTML += `
+      <div class="todo-checked" id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i 
+        class="bi ${todo.tagged ? 'bi-bookmark-fill' : 'bi-bookmark'}"
+        data-action="tag"
+        ></i>
+        </div>`;
+    }
+    else {
       todosListEl.innerHTML += `
       <div class="todo" id=${index}>
         <i 
@@ -82,6 +115,7 @@ todosListEl.addEventListener('click', (event) => {
   const parentElement = target.parentNode;
 
   if (parentElement.className !== 'todo') return;
+
 
   //todo id
   const todo = parentElement;
