@@ -60,7 +60,7 @@ function renderTodos() {
 
     if (todo.tagged===true) {
       todosListEl.innerHTML += `
-      <div class="todo-tagged" id=${index}>
+      <div class="todo-tagged" class="todo" id=${index}>
         <i 
         class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
         data-action="check"
@@ -76,7 +76,7 @@ function renderTodos() {
     }
     else if (todo.checked===true) {
       todosListEl.innerHTML += `
-      <div class="todo-checked" id=${index}>
+      <div class="todo-checked"id=${index}>
         <i 
         class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
         data-action="check"

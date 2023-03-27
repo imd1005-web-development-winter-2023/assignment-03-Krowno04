@@ -199,3 +199,53 @@ function changeTag(todoId, todoTag) {
     // re-render
     renderTodos(); // This is making it be "Untagged" EVERY loop
 }
+
+
+if (todo.tagged===true) {
+  todosListEl.innerHTML += `
+  <div class="todo-tagged" id=${index}>
+    <i 
+    class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+    data-action="check"
+    ></i>
+    <p class="" data-action="check">${todo.value}</p>
+    <i class="bi bi-pencil-square" data-action="edit"></i>
+    <i class="bi bi-trash" data-action="delete"></i>
+    <i 
+    class="bi ${todo.tagged ? 'bi-bookmark-fill' : 'bi-bookmark'}"
+    data-action="tag"
+    ></i>
+    </div>`;
+}
+else if (todo.checked===true) {
+  todosListEl.innerHTML += `
+  <div class="todo-checked" id=${index}>
+    <i 
+    class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+    data-action="check"
+    ></i>
+    <p class="" data-action="check">${todo.value}</p>
+    <i class="bi bi-pencil-square" data-action="edit"></i>
+    <i class="bi bi-trash" data-action="delete"></i>
+    <i 
+    class="bi ${todo.tagged ? 'bi-bookmark-fill' : 'bi-bookmark'}"
+    data-action="tag"
+    ></i>
+    </div>`;
+}
+else {
+  todosListEl.innerHTML += `
+  <div class="todo" id=${index}>
+    <i 
+    class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+    data-action="check"
+    ></i>
+    <p class="" data-action="check">${todo.value}</p>
+    <i class="bi bi-pencil-square" data-action="edit"></i>
+    <i class="bi bi-trash" data-action="delete"></i>
+    <i 
+    class="bi ${todo.tagged ? 'bi-bookmark-fill' : 'bi-bookmark'}"
+    data-action="tag"
+    ></i>
+    </div>`;
+}
