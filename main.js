@@ -57,7 +57,23 @@ function renderTodos() {
   todosListEl.innerHTML = '';
 
   todos.forEach((todo, index) => {
+console.log(todo);
+    todosListEl.innerHTML += `
+    <div class="todo ${todo.tagged ? 'todo-tagged' : ''} ${todo.checked ? 'todo-checked' : ''}" class="todo" id=${index}>
+      <i 
+      class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+      data-action="check"
+      ></i>
+      <p class="" data-action="check">${todo.value}</p>
+      <i class="bi bi-pencil-square" data-action="edit"></i>
+      <i class="bi bi-trash" data-action="delete"></i>
+      <i 
+      class="bi ${todo.tagged ? 'bi-star-fill' : 'bi-star'}"
+      data-action="tag"
+      ></i>
+      </div>`;
 
+/*
     if (todo.tagged===true) {
       todosListEl.innerHTML += `
       <div class="todo-tagged" class="todo" id=${index}>
@@ -106,15 +122,17 @@ function renderTodos() {
         ></i>
         </div>`;
     }
+    */
   });
 }
 
 //Target Todo Items
 todosListEl.addEventListener('click', (event) => {
+  console.log(event);
   const target = event.target;
   const parentElement = target.parentNode;
 
-  if (parentElement.className !== 'todo') return;
+  // if (parentElement.className !== 'todo') return;
 
 
   //todo id
@@ -134,6 +152,7 @@ todosListEl.addEventListener('click', (event) => {
 
 // Check Todo Function
 function checkTodo(todoId) {
+  console.log(todoId);
   todos = todos.map((todo, index) => ({
     ...todo,
     checked: index === todoId ? !todo.checked : todo.checked,
@@ -163,6 +182,7 @@ function deleteTodo(todoId) {
 
 // Check Todo Function
 function tagTodo(todoId) {
+  console.log(todoId);
   todos = todos.map((todo, index) => ({
     ...todo,
     tagged: index === todoId ? !todo.tagged : todo.tagged,
