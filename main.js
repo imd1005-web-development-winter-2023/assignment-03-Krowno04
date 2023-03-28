@@ -1,44 +1,221 @@
-//
-//  JS File
-//  You may remove the code below - it's just boilerplate
-//
+// Selects Element:
+const form = document.getElementById("todoform")
+const todoInput = document.getElementById("newtodo")
+const todosListEl = document.getElementById("todos-list")
 
-//
-// Variables
-//
+//Variables
+let todos = [];
+let EditTodoId = -1;
 
-// Constants
-const appID = "app";
-const headingText = "To do. To done. ✅";
 
-// Variables
+renderTodos();
 
-// DOM Elements
-let appContainer = document.getElementById(appID);
+//Form Submition
+form.addEventListener('submit', function (event) {
+  event.preventDefault();
 
-//
-// Functions
-//
+  saveTodo();
+  renderTodos();
+});
 
-// Add a heading to the app container
-function inititialise() {
-  // If anything is wrong with the app container then end
-  if (!appContainer) {
-    console.error("Error: Could not find app contianer");
-    return;
+// Save Todo Item
+function saveTodo() {
+  const todoValue = todoInput.value;
+
+  // check if the todo is empty
+  const isEmpty = todoValue === '';
+
+  if (isEmpty) {
+    alert("Input is empty! Add a Todo!");
+  } else {
+    if (EditTodoId >= 0) {
+      todos = todos.map((todo, index) => ({
+        ...todo,
+        value: index === EditTodoId ? todoValue : todo.value,
+      }));
+      EditTodoId = -1;
+    } else {
+      todos.push({
+        value: todoValue,
+        checked: false,
+        done:false,
+        tagged: false,
+      });
+    }
+
+    todoInput.value = '';
   }
-
-  // Create an h1 and add it to our app
-  const h1 = document.createElement("h1");
-  h1.innerText = headingText;
-  appContainer.appendChild(h1);
-
-  // Init complete
-  console.log("App successfully initialised");
 }
 
-//
-// Inits & Event Listeners
-//
+// Render Todo Items onscreen
+function renderTodos() {
+  if (todos.length === 0) {
+    todosListEl.innerHTML = '<center>List is empty!</center>'
+    return;
+  }
+  // Clear Element before a new item added
+  todosListEl.innerHTML = '';
 
-inititialise();
+  todos.forEach((todo, index) => {
+console.log(todo);
+    todosListEl.innerHTML += `
+    <div class="todo ${todo.tagged ? 'todo-tagged' : ''} ${todo.checked ? 'todo-checked' : ''}" class="todo" id=${index}>
+      <i 
+      class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+      data-action="check"
+      ></i>
+      <p class="" data-action="check">${todo.value}</p>
+      <i class="bi bi-pencil-square" data-action="edit"></i>
+      <i class="bi bi-trash" data-action="delete"></i>
+      <i 
+      class="bi ${todo.tagged ? 'bi-star-fill' : 'bi-star'}"
+      data-action="tag"
+      ></i>
+      </div>`;
+
+/*
+    if (todo.tagged===true) {
+      todosListEl.innerHTML += `
+      <div class="todo-tagged" class="todo" id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i 
+        class="bi ${todo.tagged ? 'bi-bookmark-fill' : 'bi-bookmark'}"
+        data-action="tag"
+        ></i>
+        </div>`;
+    }
+    else if (todo.checked===true) {
+      todosListEl.innerHTML += `
+      <div class="todo-checked"id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i 
+        class="bi ${todo.tagged ? 'bi-bookmark-fill' : 'bi-bookmark'}"
+        data-action="tag"
+        ></i>
+        </div>`;
+    }
+    else {
+      todosListEl.innerHTML += `
+      <div class="todo" id=${index}>
+        <i 
+        class="bi ${todo.checked ? 'bi-check-circle-fill' : 'bi-circle'}"
+        data-action="check"
+        ></i>
+        <p class="" data-action="check">${todo.value}</p>
+        <i class="bi bi-pencil-square" data-action="edit"></i>
+        <i class="bi bi-trash" data-action="delete"></i>
+        <i 
+        class="bi ${todo.tagged ? 'bi-bookmark-fill' : 'bi-bookmark'}"
+        data-action="tag"
+        ></i>
+        </div>`;
+    }
+    */
+  });
+}
+
+//Target Todo Items
+todosListEl.addEventListener('click', (event) => {
+  console.log(event);
+  const target = event.target;
+  const parentElement = target.parentNode;
+
+  // if (parentElement.className !== 'todo') return;
+
+
+  //todo id
+  const todo = parentElement;
+  const todoId = Number(todo.id);
+  // const todoTag = tdTag.className;
+
+  // Target Action
+  const action = target.dataset.action
+  action === "check" && checkTodo(todoId);
+  action === "tag" && tagTodo(todoId);
+  action === "edit" && editTodo(todoId);
+  action === "delete" && deleteTodo(todoId);
+  // action === "tag" && changeTag(todoId, todoTag);
+
+})
+
+// Check Todo Function
+function checkTodo(todoId) {
+  console.log(todoId);
+  todos = todos.map((todo, index) => ({
+    ...todo,
+    checked: index === todoId ? !todo.checked : todo.checked,
+  }));
+
+  renderTodos();
+}
+
+// Edit Todo Function
+function editTodo(todoId) {
+  console.log(todoId);
+
+  todoInput.value = todos[todoId].value;
+  EditTodoId = todoId;
+}
+
+// Delete Todo Function
+function deleteTodo(todoId) {
+  console.log(todoId);
+
+  todos = todos.filter((todo, index) => index !== todoId);
+  EditTodoId = -1;
+
+  // re-render
+  renderTodos();
+}
+
+// Check Todo Function
+function tagTodo(todoId) {
+  console.log(todoId);
+  todos = todos.map((todo, index) => ({
+    ...todo,
+    tagged: index === todoId ? !todo.tagged : todo.tagged,
+  }));
+
+  renderTodos();
+}
+
+// // Change Class Function, fully custom!! :D
+// function changeTag(todoId, todoTag) {
+//   console.log(todoTag);
+//   switch (todoTag) {
+//     case "untagged":
+//       tdTag.classList.replace("untagged", "session");
+//       todos.category="session"; // is this correct? Because IDK and it isn't working
+//       console.log(todoTag);
+//       break;
+//     case "session":
+//       tdTag.classList.replace("session", "ongoing");
+//       console.log(todoTag);
+//       break;
+//     case "ongoing":
+//       tdTag.classList.replace("ongoing", "future");
+//       console.log(todoTag);
+//       break;
+//     case "future":
+//       tdTag.classList.replace("future", "untagged");
+//       console.log(todoTag);
+//       break;
+//     default:       
+//     console.log(todoTag);
+//       break;
+//   }
+//     // re-render
+//     renderTodos(); // This is making it be "Untagged" EVERY loop
+// }
